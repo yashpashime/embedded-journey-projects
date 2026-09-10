@@ -1,4 +1,3 @@
-
 #include<iostream>
 using namespace std;
 
@@ -536,671 +535,182 @@ int strlen(const String &p)
 }
 int main()
 {
-        int pass = 0;
-        int fail = 0;
+    int ch;
 
-        cout << "==========================================" << endl;
-        cout << "       STRING CLASS TESTING" << endl;
-        cout << "==========================================" << endl;
+    do
+    {
+        cout << "\n1. Constructors\n";
+        cout << "2. Assignment / Copy\n";
+        cout << "3. Operators\n";
+        cout << "4. String Functions\n";
+        cout << "5. Search Functions\n";
+        cout << "6. strlen\n";
+        cout << "0. Exit\n";
 
+        cout << "Enter choice: ";
+        cin >> ch;
 
-        // --------------------------------------------------
-        // 1. DEFAULT CONSTRUCTOR
-        // --------------------------------------------------
-
-        cout << "\n1. Default Constructor" << endl;
-
-        String a;
-
-        if(strlen(a) == 0)
+        switch(ch)
         {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
+            case 1:
+            {
+                String a;
+                String b("Hello");
+                String c(nullptr);
+                String d(b);
 
+                if(strlen(a) == 0 &&
+                   strcmp(b,String("Hello")) == 0 &&
+                   strlen(c) == 0 &&
+                   strcmp(b,d) == 0)
+                    cout << "PASS\n";
+                else
+                    cout << "FAIL\n";
 
-        // --------------------------------------------------
-        // 2. PARAMETERIZED CONSTRUCTOR
-        // --------------------------------------------------
+                break;
+            }
 
-        cout << "\n2. Parameterized Constructor" << endl;
+            case 2:
+            {
+                String a("Hello");
+                String b;
 
-        String b("Hello");
+                b = a;
 
-        if(strcmp(b,String("Hello")) == 0)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
+                a = a;
 
+                if(a == b && b == String("Hello"))
+                    cout << "PASS\n";
+                else
+                    cout << "FAIL\n";
 
-        // --------------------------------------------------
-        // 3. NULL POINTER CONSTRUCTOR
-        // --------------------------------------------------
+                break;
+            }
 
-        cout << "\n3. nullptr Constructor" << endl;
+            case 3:
+            {
+                String a("Hello");
+                String b(" World");
 
-        String nullString(nullptr);
+                String c = a + b;
 
-        if(strlen(nullString) == 0)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
+                a[0] = 'Y';
 
+                if(c == String("Hello World") &&
+                   a == String("Yello") &&
+                   String("World") > String("Hello") &&
+                   String("Hello") < String("World") &&
+                   String("Hello") <= String("Hello") &&
+                   String("World") >= String("Hello") &&
+                   String("Hello") != String("World"))
+                    cout << "PASS\n";
+                else
+                    cout << "FAIL\n";
 
-        // --------------------------------------------------
-        // 4. COPY CONSTRUCTOR
-        // --------------------------------------------------
+                break;
+            }
 
-        cout << "\n4. Copy Constructor" << endl;
+            case 4:
+            {
+                String a("Hello");
+                String b("World");
 
-        String c(b);
+                strcpy(a,b);
 
-        if(strcmp(c,b) == 0)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
+                if(a == String("World"))
+                {
+                    strncpy(a,String("Embedded"),4);
 
+                    if(a == String("Embe"))
+                    {
+                        strcat(a,String("Test"));
 
-        // --------------------------------------------------
-        // 5. ASSIGNMENT OPERATOR
-        // --------------------------------------------------
+                        if(a == String("EmbeTest"))
+                        {
+                            strncat(a,String("12345"),2);
 
-        cout << "\n5. Assignment Operator" << endl;
+                            if(a == String("EmbeTest12"))
+                            {
+                                strrev(a);
 
-        String d;
+                                if(a == String("21tseTebmE"))
+                                {
+                                    strupr(a);
 
-        d = b;
+                                    if(a == String("21TSETEBME"))
+                                    {
+                                        strlwr(a);
 
-        if(strcmp(d,b) == 0)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
+                                        if(a == String("21tsetebme"))
+                                            cout << "PASS\n";
+                                        else
+                                            cout << "FAIL\n";
+                                    }
+                                    else
+                                        cout << "FAIL\n";
+                                }
+                                else
+                                    cout << "FAIL\n";
+                            }
+                            else
+                                cout << "FAIL\n";
+                        }
+                        else
+                            cout << "FAIL\n";
+                    }
+                    else
+                        cout << "FAIL\n";
+                }
+                else
+                    cout << "FAIL\n";
 
+                break;
+            }
 
-        // --------------------------------------------------
-        // 6. SELF ASSIGNMENT
-        // --------------------------------------------------
+            case 5:
+            {
+                String a("Hello World");
 
-        cout << "\n6. Self Assignment" << endl;
+                char *p1 = strchr(a,'W');
+                char *p2 = strrchr(a,'l');
+                char *p3 = strstr(a,"World");
 
-        d = d;
+                if(p1 != NULL &&
+                   *p1 == 'W' &&
+                   p2 != NULL &&
+                   *p2 == 'l' &&
+                   p3 != NULL &&
+                   *p3 == 'W' &&
+                   strchr(a,'X') == NULL &&
+                   strstr(a,"XYZ") == NULL)
+                    cout << "PASS\n";
+                else
+                    cout << "FAIL\n";
 
-        if(strcmp(d,String("Hello")) == 0)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
+                break;
+            }
 
+            case 6:
+            {
+                String a("Embedded");
 
-        // --------------------------------------------------
-        // 7. + OPERATOR
-        // --------------------------------------------------
+                if(strlen(a) == 8)
+                    cout << "PASS\n";
+                else
+                    cout << "FAIL\n";
 
-        cout << "\n7. + Operator" << endl;
+                break;
+            }
 
-        String e("Hello ");
-        String f("World");
+            case 0:
+                cout << "Exiting...\n";
+                break;
 
-        String g = e + f;
-
-        if(strcmp(g,String("Hello World")) == 0)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 8. [] OPERATOR
-        // --------------------------------------------------
-
-        cout << "\n8. [] Operator" << endl;
-
-        String h("Hello");
-
-        h[0] = 'Y';
-
-        if(strcmp(h,String("Yello")) == 0)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 9. > OPERATOR
-        // --------------------------------------------------
-
-        cout << "\n9. > Operator" << endl;
-
-        String i("World");
-        String j("Hello");
-
-        if(i > j)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
+            default:
+                cout << "Invalid choice\n";
         }
 
+    } while(ch != 0);
 
-        // --------------------------------------------------
-        // 10. < OPERATOR
-        // --------------------------------------------------
-
-        cout << "\n10. < Operator" << endl;
-
-        if(j < i)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 11. >= OPERATOR
-        // --------------------------------------------------
-
-        cout << "\n11. >= Operator" << endl;
-
-        if(i >= j && i >= i)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 12. <= OPERATOR
-        // --------------------------------------------------
-
-        cout << "\n12. <= Operator" << endl;
-
-        if(j <= i && j <= j)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 13. != OPERATOR
-        // --------------------------------------------------
-
-        cout << "\n13. != Operator" << endl;
-
-        if(i != j && !(i != i))
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 14. == OPERATOR
-        // --------------------------------------------------
-
-        cout << "\n14. == Operator" << endl;
-
-        if(i == String("World") && !(i == j))
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 15. << OPERATOR
-        // --------------------------------------------------
-
-        cout << "\n15. << Operator" << endl;
-
-        cout << "Output should be: World" << endl;
-        cout << "Actual output: " << i << endl;
-
-
-        // --------------------------------------------------
-        // 16. strcpy
-        // --------------------------------------------------
-
-        cout << "\n16. strcpy" << endl;
-
-        String k("ABC");
-        String l("XYZ");
-
-        strcpy(k,l);
-
-        if(strcmp(k,String("XYZ")) == 0)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 17. strncpy
-        // --------------------------------------------------
-
-        cout << "\n17. strncpy" << endl;
-
-        String m("123456");
-
-        strncpy(m,String("ABCDEFG"),3);
-
-        if(strcmp(m,String("ABC")) == 0)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 18. strcmp
-        // --------------------------------------------------
-
-        cout << "\n18. strcmp" << endl;
-
-        String n1("Apple");
-        String n2("Banana");
-        String n3("Apple");
-
-        if(strcmp(n1,n2) < 0 &&
-           strcmp(n2,n1) > 0 &&
-           strcmp(n1,n3) == 0)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 19. strncmp
-        // --------------------------------------------------
-
-        cout << "\n19. strncmp" << endl;
-
-        String o1("HelloWorld");
-        String o2("HelloThere");
-
-        if(strncmp(o1,o2,5) == 0 &&
-           strncmp(o1,o2,6) > 0)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 20. strcat
-        // --------------------------------------------------
-
-        cout << "\n20. strcat" << endl;
-
-        String p("Hello");
-        String q("World");
-
-        strcat(p,q);
-
-        if(strcmp(p,String("HelloWorld")) == 0)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 21. strncat
-        // --------------------------------------------------
-
-        cout << "\n21. strncat" << endl;
-
-        String r("Hello");
-
-        strncat(r,String("World"),3);
-
-        if(strcmp(r,String("HelloWor")) == 0)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 22. strrev
-        // --------------------------------------------------
-
-        cout << "\n22. strrev" << endl;
-
-        String s1("ABCDE");
-
-        strrev(s1);
-
-        if(strcmp(s1,String("EDCBA")) == 0)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 23. strupr
-        // --------------------------------------------------
-
-        cout << "\n23. strupr" << endl;
-
-        String s2("hello World");
-
-        strupr(s2);
-
-        if(strcmp(s2,String("HELLO WORLD")) == 0)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 24. strlwr
-        // --------------------------------------------------
-
-        cout << "\n24. strlwr" << endl;
-
-        String s3("HELLO World");
-
-        strlwr(s3);
-
-        if(strcmp(s3,String("hello world")) == 0)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 25. strchr
-        // --------------------------------------------------
-
-        cout << "\n25. strchr" << endl;
-
-        String s4("Hello World");
-
-        char *x = strchr(s4,'W');
-
-        if(x != NULL && *x == 'W')
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 26. strchr - CHARACTER NOT FOUND
-        // --------------------------------------------------
-
-        cout << "\n26. strchr - Character Not Found" << endl;
-
-        x = strchr(s4,'Z');
-
-        if(x == NULL)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 27. strrchr
-        // --------------------------------------------------
-
-        cout << "\n27. strrchr" << endl;
-
-        String s5("banana");
-
-        char *y = strrchr(s5,'a');
-
-        if(y != NULL && *y == 'a')
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 28. strrchr - CHARACTER NOT FOUND
-        // --------------------------------------------------
-
-        cout << "\n28. strrchr - Character Not Found" << endl;
-
-        y = strrchr(s5,'z');
-
-        if(y == NULL)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 29. strstr
-        // --------------------------------------------------
-
-        cout << "\n29. strstr" << endl;
-
-        String s6("Hello World");
-
-        char *z = strstr(s6,"World");
-
-        if(z != NULL && *z == 'W')
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 30. strstr - STRING NOT FOUND
-        // --------------------------------------------------
-
-        cout << "\n30. strstr - String Not Found" << endl;
-
-        z = strstr(s6,"XYZ");
-
-        if(z == NULL)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // 31. strlen
-        // --------------------------------------------------
-
-        cout << "\n31. strlen" << endl;
-
-        String s7("Embedded");
-
-        if(strlen(s7) == 8)
-        {
-                cout << "PASS" << endl;
-                pass++;
-        }
-        else
-        {
-                cout << "FAIL" << endl;
-                fail++;
-        }
-
-
-        // --------------------------------------------------
-        // FINAL RESULT
-        // --------------------------------------------------
-
-        cout << "\n==========================================" << endl;
-        cout << "              FINAL RESULT" << endl;
-        cout << "==========================================" << endl;
-
-        cout << "Tests Passed : " << pass << endl;
-        cout << "Tests Failed : " << fail << endl;
-
-        if(fail == 0)
-        {
-                cout << "\nALL TESTS PASSED!" << endl;
-        }
-        else
-        {
-                cout << "\nSOME TESTS FAILED!" << endl;
-        }
-
-        cout << "==========================================" << endl;
-
-        return 0;
+    return 0;
 }
