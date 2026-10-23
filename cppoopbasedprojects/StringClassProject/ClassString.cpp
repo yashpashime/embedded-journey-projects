@@ -9,9 +9,10 @@ class String
 
         String()
         {
-                s=new char[1];
-                s[0]='\0';
-        }
+  //              s=new char[1];
+//                s[0]='\0';
+    	s=0;
+    }
 
         String(const char *p)
         {
@@ -53,6 +54,7 @@ class String
 
         ~String()
         {
+			if(s!=0)
                 delete []s;
         }
 
